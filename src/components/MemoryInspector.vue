@@ -90,7 +90,7 @@ button {
 .data-view {
   display: flex;
   flex-wrap: wrap;
-  width: 455px;
+  width: 465px;
   padding-left: 5px;
   margin-left: 100px;
   font-family: monospace;
@@ -100,7 +100,10 @@ button {
 
   .cell {
     display: block;
+    width: 25px;
+    height: 22px;
     padding: 0 4px;
+    line-height: 22px;
     cursor: default;
     user-select: none;
 
@@ -133,14 +136,17 @@ button {
 .char-view {
   display: flex;
   flex-wrap: wrap;
-  width: 280px;
+  width: 300px;
   padding-left: 10px;
   font-family: monospace;
   font-size: 14px;
 
   .cell {
     display: block;
+    width: 18px;
+    height: 22px;
     padding: 0 4px;
+    line-height: 22px;
     cursor: default;
     user-select: none;
 
