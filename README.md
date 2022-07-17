@@ -1,5 +1,7 @@
 # E-Calculator
 
+![example workflow](https://github.com/champkeh/e-calculator/actions/workflows/build.yaml/badge.svg)
+
 > https://cryptojs.gitbook.io/docs/#hashing
 
 编码计算器，用于快速计算一段数据的 base64 / sha1 / md5 / hex 等常见的编码结果。
