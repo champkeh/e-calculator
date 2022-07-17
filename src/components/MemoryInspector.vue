@@ -2,15 +2,29 @@
   <div class="wrapper">
     <label for="memory-inspector">Memory Inspector:</label>
     <button @click="close">关闭</button>
-    <div class="data-view">
-      <span
-        v-for="(digit, idx) in u8Array"
-        :key="idx"
-        class="cell"
-        :data-idx="formatAddress(idx)"
-      >
-        {{ formatDigit(digit) }}
-      </span>
+    <div class="flex-wrapper">
+      <div class="data-view">
+        <span
+          v-for="(digit, idx) in u8Array"
+          :key="idx"
+          class="cell"
+          :class="{ select: idx === selectIdx }"
+          :data-idx="formatAddress(idx)"
+          @click="selectIdx = idx"
+        >
+          {{ formatDigit(digit) }}
+        </span>
+      </div>
+      <div class="char-view">
+        <span
+          v-for="(digit, idx) in u8Array"
+          :key="idx"
+          class="cell"
+          :class="{ select: idx === selectIdx }"
+        >
+          {{ formatChar(digit) }}
+        </span>
+      </div>
     </div>
   </div>
 </template>
@@ -31,10 +45,16 @@ watchEffect(() => {
 })
 
 function formatDigit(digit: number) {
-  return ("0" + digit.toString(16)).slice(-2)
+  return ("0" + digit.toString(16).toUpperCase()).slice(-2)
 }
 function formatAddress(idx: number) {
   return ("0".repeat(8) + idx.toString(16)).slice(-8)
+}
+function formatChar(digit: number) {
+  if (digit >= 32 && digit <= 126) {
+    return String.fromCharCode(digit)
+  }
+  return "."
 }
 
 const emit = defineEmits(["close"])
@@ -42,11 +62,17 @@ const emit = defineEmits(["close"])
 function close() {
   emit("close")
 }
+
+const selectIdx = ref(0)
 </script>
 
 <style lang="scss" scoped>
 .wrapper {
   position: relative;
+}
+
+.flex-wrapper {
+  display: flex;
 }
 
 label {
@@ -68,8 +94,6 @@ button {
   padding-left: 5px;
   margin-left: 100px;
   font-family: monospace;
-
-  // background-color: red;
   font-size: 14px;
   border-right: 1px solid #c4c4c4;
   border-left: 1px solid #c4c4c4;
@@ -77,6 +101,8 @@ button {
   .cell {
     display: block;
     padding: 0 4px;
+    cursor: default;
+    user-select: none;
 
     &:nth-child(4n) {
       margin-right: 15px;
@@ -96,6 +122,27 @@ button {
         content: attr(data-idx);
       }
     }
+
+    &.select {
+      background-color: #9ebfecff;
+      border-radius: 3px;
+    }
+  }
+}
+
+.char-view {
+  display: flex;
+  flex-wrap: wrap;
+  width: 280px;
+  padding-left: 10px;
+  font-family: monospace;
+  font-size: 14px;
+
+  .cell {
+    display: block;
+    padding: 0 4px;
+    cursor: default;
+    user-select: none;
 
     &.select {
       background-color: #9ebfecff;

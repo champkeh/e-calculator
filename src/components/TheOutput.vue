@@ -34,6 +34,7 @@ function inspect() {
 textarea {
   width: 100%;
   min-height: 200px;
+  font-size: 16px;
   word-break: break-all;
   resize: none;
 }

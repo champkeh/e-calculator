@@ -92,7 +92,7 @@ h1 {
 }
 
 #app {
-  width: 800px;
+  width: 1000px;
   margin: 0 auto;
 }
 </style>
