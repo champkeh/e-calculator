@@ -11,7 +11,7 @@ function resolve(dir: string) {
 // https://vitejs.dev/config/
 export default defineConfig(() => {
     return {
-        base: "/e-calculator/",
+        base: "/",
         resolve: {
             alias: {
                 "@": resolve("src"),
@@ -22,7 +22,7 @@ export default defineConfig(() => {
             },
         },
         build: {
-            outDir: "docs",
+            outDir: "dist",
         },
         plugins: [
             vue(),
