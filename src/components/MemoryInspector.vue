@@ -103,16 +103,4 @@ button {
     }
   }
 }
-
-.cell {
-  // display: inline-block;
-  // margin: 5px 5px;
-  // cursor: unset;
-  // &:nth-child(4n) {
-  //  margin-right: 20px;
-  // }
-  // &:nth-child(16n) {
-  //  margin-right: 100px;
-  // }
-}
 </style>
