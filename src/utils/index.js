@@ -86,3 +86,17 @@ export function sha3(input) {
 export function rip(input) {
   return CryptoJS.RIPEMD160(input)
 }
+
+export function convertWordArrayToUint8Array(words) {
+  const len = words.length
+  const u8Array = new Uint8Array(len << 2)
+  let offset = 0
+  for (let i = 0; i < len; i++) {
+    let word = words[i]
+    u8Array[offset++] = word >> 24
+    u8Array[offset++] = (word >> 16) & 0xff
+    u8Array[offset++] = (word >> 8) & 0xff
+    u8Array[offset++] = word & 0xff
+  }
+  return u8Array
+}

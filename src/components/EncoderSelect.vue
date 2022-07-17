@@ -22,17 +22,17 @@ const props = defineProps({
     type: String,
     default: "UTF-8",
   },
+  type: {
+    type: String,
+    default: "input",
+  },
 })
 const emit = defineEmits(["update:value"])
 
-const encoders: string[] = [
-  "UTF-8",
-  "Base64",
-  "Latin1",
-  "Hex",
-  "UTF-16",
-  "UTF-16LE",
-]
+const encoders: string[] =
+  props.type === "input"
+    ? ["UTF-8", "Base64", "Hex", "Latin1", "UTF-16", "UTF-16LE"]
+    : ["Base64", "Hex", "Latin1", "UTF-8", "UTF-16", "UTF-16LE"]
 </script>
 
 <style lang="scss" scoped>

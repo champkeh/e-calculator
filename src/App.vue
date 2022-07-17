@@ -3,18 +3,20 @@
     <h1>E-Calculator</h1>
     <TheExpression />
     <div class="flex-container">
-      <TheInput />
-      <TheOutput />
+      <TheInput @open="show = true" />
+      <TheOutput @open="show = true" />
     </div>
 
     <!--    <BuiltIn />-->
-    <!--    <MemoryInspector :data="input" />-->
+    <MemoryInspector v-if="show" @close="show = false" />
   </div>
 </template>
 
 <script setup>
 import { ref, provide, watchEffect } from "vue"
+import { useNotification } from "naive-ui"
 // import BuiltIn from "@/components/BuiltIn.vue"
+import MemoryInspector from "@/components/MemoryInspector.vue"
 import TheExpression from "@/components/TheExpression.vue"
 import TheInput from "@/components/TheInput.vue"
 import TheOutput from "@/components/TheOutput.vue"
@@ -32,15 +34,20 @@ import {
 import { useInputEncoding } from "@/composables/useInputEncoding"
 import { useOutputEncoding } from "@/composables/useOutputEncoding"
 
+const show = ref(false)
+
 const state = {
   input: ref("世界，你好！"),
   inputEncoding: ref("UTF-8"),
   output: ref(""),
-  outputEncoding: ref("UTF-8"),
+  outputEncoding: ref("Base64"),
   expression: ref("input"),
+  memory: ref(null),
 }
 
 provide("state", state)
+
+const notification = useNotification()
 
 watchEffect(() => {
   const input = useInputEncoding(state.input, state.inputEncoding)
@@ -61,7 +68,15 @@ watchEffect(() => {
     const output = scopeEval(scope, state.expression.value)
     state.output.value = useOutputEncoding(output, state.outputEncoding)
   } catch (e) {
-    // console.log(e)
+    console.log(e)
+    setTimeout(() => {
+      notification.warning({
+        title: "警告",
+        content: "表达式或格式错误",
+        duration: 2000,
+        closable: false,
+      })
+    })
   }
 })
 </script>
