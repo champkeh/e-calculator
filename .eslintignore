@@ -1,0 +1,7 @@
+.idea
+dist
+env
+typings
+webpack.config.js
+src/assets/fonts
+scripts
