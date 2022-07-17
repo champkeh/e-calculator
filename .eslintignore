@@ -1,6 +1,5 @@
 .idea
 dist
-docs
 env
 typings
 webpack.config.js
