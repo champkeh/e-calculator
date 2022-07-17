@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <label for="expression">表达式:</label><br />
-    <textarea id="expression" v-model="expression"></textarea>
+    <textarea id="expression" v-model="expression">12</textarea>
   </div>
 </template>
 

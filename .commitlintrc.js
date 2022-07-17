@@ -16,6 +16,7 @@ const Configuration = {
                 "style", // 代码格式相关
                 "chore", // 杂项
                 "revert", // 回滚
+                "build", // 构建
             ],
         ],
         // <type> 格式 小写

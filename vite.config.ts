@@ -11,7 +11,7 @@ function resolve(dir: string) {
 // https://vitejs.dev/config/
 export default defineConfig(() => {
     return {
-        base: "/dist",
+        base: "/docs/",
         resolve: {
             alias: {
                 "@": resolve("src"),
@@ -20,6 +20,9 @@ export default defineConfig(() => {
                 "@images": resolve("src/assets/images"),
                 "~@images": resolve("src/assets/images"),
             },
+        },
+        build: {
+            outDir: "docs",
         },
         plugins: [
             vue(),
