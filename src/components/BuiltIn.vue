@@ -27,20 +27,21 @@
 
 <script>
 export default {
-  name: "BuiltIn"
+  name: "BuiltIn",
 }
 </script>
 
 <style lang="scss" scoped>
 .wrapper {
   position: fixed;
-  left: 0;
   top: 0;
+  left: 0;
   padding: 10px;
 }
 
 table {
   border-collapse: collapse;
+
   td {
     padding: 5px 10px;
     border: 1px solid #c4c4c4;
