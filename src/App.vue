@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h1>E-Calculator</h1>
+    <h1>编码计算器</h1>
     <TheExpression />
     <div class="flex-container">
       <TheInput @open="show = true" />
