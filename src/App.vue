@@ -7,7 +7,6 @@
       <TheOutput @open="show = true" />
     </div>
 
-    <!--    <BuiltIn />-->
     <MemoryInspector v-if="show" @close="show = false" />
   </div>
 </template>
@@ -15,7 +14,6 @@
 <script setup>
 import { ref, provide, watchEffect } from "vue"
 import { useNotification } from "naive-ui"
-// import BuiltIn from "@/components/BuiltIn.vue"
 import MemoryInspector from "@/components/MemoryInspector.vue"
 import TheExpression from "@/components/TheExpression.vue"
 import TheInput from "@/components/TheInput.vue"
@@ -52,7 +50,7 @@ const notification = useNotification()
 watchEffect(() => {
   const input = useInputEncoding(state.input, state.inputEncoding)
 
-  const scope = {
+  const context = {
     input,
     md5,
     sha1,
@@ -65,7 +63,7 @@ watchEffect(() => {
   }
 
   try {
-    const output = scopeEval(scope, state.expression.value)
+    const output = scopeEval(context, state.expression.value)
     state.output.value = useOutputEncoding(output, state.outputEncoding)
   } catch (e) {
     console.log(e)

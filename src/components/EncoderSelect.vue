@@ -40,4 +40,16 @@ const encoders: string[] =
   margin-top: 10px;
   margin-bottom: 10px;
 }
+
+:deep(.n-radio-button--checked) {
+  --n-button-color-active: black;
+  --n-button-text-color-active: white;
+  --n-button-border-color-active: transparent;
+  --n-button-text-color-hover: black;
+  --n-button-box-shadow-focus: none;
+}
+
+:deep(.n-radio-group .n-radio-group__splitor.n-radio-group__splitor--checked) {
+  --n-button-border-color-active: black;
+}
 </style>
