@@ -18,17 +18,7 @@ import MemoryInspector from "@/components/MemoryInspector.vue"
 import TheExpression from "@/components/TheExpression.vue"
 import TheInput from "@/components/TheInput.vue"
 import TheOutput from "@/components/TheOutput.vue"
-import {
-  scopeEval,
-  md5,
-  sha1,
-  sha256,
-  sha384,
-  sha512,
-  sha224,
-  sha3,
-  rip,
-} from "@/utils"
+import * as exp from "@/utils/expression"
 import { useInputEncoding } from "@/composables/useInputEncoding"
 import { useOutputEncoding } from "@/composables/useOutputEncoding"
 
@@ -52,18 +42,11 @@ watchEffect(() => {
 
   const context = {
     input,
-    md5,
-    sha1,
-    sha224,
-    sha256,
-    sha384,
-    sha512,
-    sha3,
-    rip,
+    ...exp,
   }
 
   try {
-    const output = scopeEval(context, state.expression.value)
+    const output = exp.scopeEval(context, state.expression.value)
     state.output.value = useOutputEncoding(output, state.outputEncoding)
   } catch (e) {
     console.log(e)

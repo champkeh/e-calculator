@@ -11,6 +11,7 @@
         <n-button type="primary" @click="sha1">SHA1</n-button>
         <n-button type="primary" @click="sha256">SHA256</n-button>
         <n-button type="primary" @click="sha512">SHA512</n-button>
+        <n-button type="primary" @click="mask">mask</n-button>
       </n-space>
       <n-space style="flex: 1" justify="end">
         <n-button type="primary" @click="showDrawer = true"
@@ -47,6 +48,9 @@ function sha256() {
 }
 function sha512() {
   expression.value = "sha512(input)"
+}
+function mask() {
+  expression.value = 'mask(input, "")'
 }
 </script>
 
